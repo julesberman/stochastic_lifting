@@ -40,7 +40,7 @@ The key points used in these demos are:
 
 ## Setup
 
-Use Python 3.11 or newer. The project uses `uv` for environment management.
+Use Python 3.11 or newer. The project uses `uv` for environment management, but dependency resolution is intentionally based on `requirements.txt` rather than `uv.lock`.
 
 Install `uv` if it is not already available:
 
@@ -48,13 +48,20 @@ Install `uv` if it is not already available:
 curl -LsSf https://astral.sh/uv/install.sh | sh
 ```
 
-From the repository root, install the project and its dependencies:
+From the repository root, create a virtual environment and install the requirements:
 
 ```bash
-uv sync
+uv venv --python 3.11
+uv pip install -r requirements.txt
 ```
 
-This installs the local `sl` package in editable mode inside the `uv` environment, so changes under `sl/` are visible to the notebooks without manual path edits.
+Install the local `sl` package in editable mode:
+
+```bash
+uv pip install -e . --no-deps
+```
+
+Dependencies are listed in `requirements.txt`, and the package metadata reads that same file when the package is built or installed. On Linux, the requirements install JAX with CUDA 12 support through `jax[cuda12]`. On macOS and other non-Linux platforms, the requirements install standard JAX because the CUDA wheels are Linux-only.
 
 Start JupyterLab:
 

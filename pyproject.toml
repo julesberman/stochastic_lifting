@@ -4,26 +4,14 @@ version = "0.1.0"
 description = "Demo implementation utilities for stochastic lifting experiments."
 readme = "README.md"
 requires-python = ">=3.11"
-dependencies = [
-    "einops>=0.8.0",
-    "flax>=0.10.0",
-    "imageio[ffmpeg]>=2.35.0",
-    "ipykernel>=6.29.0",
-    "ipython>=8.27.0",
-    "jax>=0.5.0",
-    "jax-cfd>=0.2.1",
-    "jupyterlab>=4.2.0",
-    "matplotlib>=3.9.0",
-    "notebook>=7.2.0",
-    "numpy>=2.0.0",
-    "optax>=0.2.3",
-    "seaborn>=0.13.0",
-    "tqdm>=4.66.0",
-]
+dynamic = ["dependencies"]
 
 [build-system]
-requires = ["hatchling"]
-build-backend = "hatchling.build"
+requires = ["setuptools>=69", "wheel"]
+build-backend = "setuptools.build_meta"
 
-[tool.hatch.build.targets.wheel]
-packages = ["sl"]
+[tool.setuptools.packages.find]
+include = ["sl*"]
+
+[tool.setuptools.dynamic]
+dependencies = { file = ["requirements.txt"] }
