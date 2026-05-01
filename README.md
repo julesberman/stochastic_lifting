@@ -91,7 +91,6 @@ For better output quality, increase `n_train` and `train_steps`.
 ## Repository Layout
 
 - `sl/`: installable Python package for stochastic lifting utilities.
-- `sl/dnn.py`: simple Flax MLP for low-dimensional demos.
 - `sl/metric.py`: trajectory comparison metrics.
 - `sl/opt.py`: small Optax training helper.
 - `sl/plot.py`: plotting and animation helpers.
