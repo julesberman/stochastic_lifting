@@ -40,7 +40,7 @@ The key points used in these demos are:
 
 ## Setup
 
-Use Python 3.11 or newer. The project uses `uv` for environment management, but dependency resolution is intentionally based on `requirements.txt` rather than `uv.lock`.
+Use Python 3.12 or newer. The project uses `uv` for environment management, but dependency resolution is intentionally based on `requirements.txt` rather than `uv.lock`.
 
 Install `uv` if it is not already available:
 
@@ -51,7 +51,8 @@ curl -LsSf https://astral.sh/uv/install.sh | sh
 From the repository root, create a virtual environment and install the requirements:
 
 ```bash
-uv venv --python 3.11
+uv venv --python 3.12
+source .venv/bin/activate
 uv pip install -r requirements.txt
 ```
 
@@ -61,19 +62,7 @@ Install the local `sl` package in editable mode:
 uv pip install -e . --no-deps
 ```
 
-Dependencies are listed in `requirements.txt`, and the package metadata reads that same file when the package is built or installed. On Linux, the requirements install JAX with CUDA 12 support through `jax[cuda12]`. On macOS and other non-Linux platforms, the requirements install standard JAX because the CUDA wheels are Linux-only.
-
-Start JupyterLab:
-
-```bash
-uv run jupyter lab
-```
-
-If you prefer the classic notebook interface:
-
-```bash
-uv run jupyter notebook
-```
+Dependencies are listed in `requirements.txt`, and the package metadata reads that same file when the package is built or installed.
 
 Open notebooks from the Jupyter file browser. The notebooks live at the repository root and import reusable code with `from sl...` imports.
 
